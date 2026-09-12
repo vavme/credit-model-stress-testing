@@ -1,0 +1,29 @@
+# Data — Kaggle competition data can't be redistributed; use
+# src/data/download_home_credit.py to fetch it locally instead.
+# Leading slash matters: this must NOT also match src/data/ (the module).
+/data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model artifacts
+*.pkl
+*.joblib
+*.model
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Env / secrets
+.env
+kaggle.json

@@ -1,0 +1,27 @@
+# Starter example only — the config schema itself is still your call (0.8
+# in the tracker). This shows one shape a run config could take: enough to
+# parameterize a single cell of the corruption x severity x model grid.
+# Delete or restructure freely once you've decided YAML+dataclass vs Hydra.
+
+seed: 42
+
+data:
+  raw_path: "data/raw/application_train.csv"
+  split:
+    train: 0.6
+    val: 0.2
+    test: 0.2
+    stratify_on: "TARGET"
+
+corruption:
+  scenario: "mnar_missingness"   # or: label_noise | distribution_drift
+  severity: 0.25                 # 0.0 / 0.10 / 0.25 / 0.50 per 3.2
+  target_field: "EXT_SOURCE_1"   # example only — pick from your 1.7 shortlist
+
+model:
+  type: "logistic_regression_woe"  # or: xgboost
+  params: {}
+
+run:
+  run_id: null   # fill at execution time, e.g. f"{scenario}_{severity}_{model_type}_{seed}"
+  results_table: "results/runs.csv"   # per 0.9 — adjust path once decided

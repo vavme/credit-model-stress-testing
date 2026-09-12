@@ -1,0 +1,32 @@
+[project]
+name = "credit-risk-degradation"
+version = "0.1.0"
+description = "Project 1 — Credit Risk Under Data Quality Degradation: where model complexity stops paying for itself as data quality degrades."
+authors = [{ name = "Vav" }]
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pandas>=2.2,<3.0",
+    "numpy>=1.26,<2.0",
+    "scikit-learn>=1.4,<2.0",
+    "xgboost>=2.0,<3.0",
+    "optbinning>=0.19,<0.20",
+    "shap>=0.45,<0.46",
+    "scipy>=1.12,<2.0",
+    "matplotlib>=3.8,<4.0",
+    "seaborn>=0.13,<0.14",
+    "pyyaml>=6.0,<7.0",
+    "kaggle>=1.6,<2.0",
+]
+
+[tool.poetry]
+packages = [{ include = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+jupyter = "^1.0"
+ipykernel = "^6.29"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
