@@ -27,3 +27,8 @@ venv/
 # Env / secrets
 .env
 kaggle.json
+
+# Local-only context — career/personal background for Claude Code sessions,
+# not meant to be visible in this public portfolio repo.
+PROJECT_CONTEXT.md
+CLAUDE.md
