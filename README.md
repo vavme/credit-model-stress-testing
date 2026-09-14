@@ -4,7 +4,7 @@ Testing where model complexity stops paying for itself as data quality degrades,
 
 ## Hypothesis
 
-_TBD — Phase 0.1, in progress. Pin the final 3-5 sentence hypothesis here before starting Phase 1._
+I want to find the point where XGBoost stops beating a simple WOE-based credit scorecard by a margin that actually matters, as the input data gets worse. I'll corrupt the Home Credit dataset in three ways that mirror real banking data problems: values going missing in a way tied to risk, loan labels being recorded before the loan's true outcome is known, and a feature's scale or structure quietly changing underneath the model, each at increasing severity. My guess is the accuracy gap shrinks gradually with missingness and label immaturity, since WOE's coarse bins and the model's own capacity constraints absorb small, spread-out errors, but drops sharply once schema or scale drift hits, since that corruption realistically corrupts an entire feature at once rather than a growing share of rows. I'm defining "stop paying for itself" as the point where the bootstrapped confidence interval on that gap first includes zero. I don't have a strong prediction for whether label immaturity or schema drift causes more total damage, that's genuinely one of the things the experiment needs to answer. I also expect the complex model's SHAP-based explanations to get unstable before its accuracy visibly drops, which matters because a bank needs a defensible reason for every credit decision, not just an accurate one.
 
 ## Non-goals
 
@@ -16,6 +16,9 @@ _TBD — Phase 0.1, in progress. Pin the final 3-5 sentence hypothesis here befo
 - Not quantifying real implementation, governance/validation, or monitoring cost in dollars or hours — these are named as motivation for why complexity isn't free, not something this project measures directly.
 - Not optimizing against a specific bank's business objective (a target approval rate or bad rate cutoff) — the comparison is judged on overall discrimination (AUC/Gini/KS).
 - Not declaring a fixed accuracy threshold (e.g. "must beat by 5 points") as the definition of "worth it" — materiality is read off the bootstrapped confidence interval on the complexity premium at each corruption severity level.
+- Not building a production-serving or real-time scoring pipeline — this stays a research/offline comparison, not a deployable service.
+- Not running a formal fairness or disparate-impact audit — a real bank deployment would need this, but it's a distinct project on its own and out of scope here.
+- Not benchmarking other complex-model families (LightGBM, CatBoost, etc.) — XGBoost is the one complex model, fixed by design, not chosen through a bake-off.
 
 ## Data
 
@@ -58,9 +61,13 @@ src/
   explain/     SHAP + coefficient-based explanations, stability checks
 notebooks/     exploratory work
 tests/         pytest suite
-configs/       experiment configs (schema still TBD — see 0.8)
+configs/       experiment configs — YAML, parsed into a dataclass (see docs/decisions/0.8-config-schema.md)
 ```
+
+## Development process
+
+This project was built with help from Claude Code for implementation work, alongside a separate conversation with Claude where the actual research decisions got made: the hypothesis, the corruption scenario design, bin-edge review, and anything else that needed real judgment. A local `CLAUDE.md` file enforces that split during development, spelling out which decisions are mine and which are safe to delegate. It isn't committed here because it's tooling setup, not project content, not because the process is a secret.
 
 ## Status
 
-Tracked phase-by-phase in the [execution tracker](https://claude.ai/code/artifact/7e1e5876-5602-419c-808e-30b895829bcf). Currently on Phase 0 (Scope Lock & Setup).
+Tracked phase-by-phase in the [execution tracker](https://claude.ai/code/artifact/7e1e5876-5602-419c-808e-30b895829bcf). Phase 0 (Scope Lock & Setup) is complete; currently on Phase 1 (Data Acquisition & EDA).

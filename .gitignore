@@ -2,6 +2,9 @@
 # src/data/download_home_credit.py to fetch it locally instead.
 # Leading slash matters: this must NOT also match src/data/ (the module).
 /data/
+# Also covers the manually-downloaded full competition zip, extracted to
+# dataset/ instead of data/raw/ — ignored either way until it's renamed.
+/dataset/
 
 # Python
 __pycache__/
@@ -30,5 +33,8 @@ kaggle.json
 
 # Local-only context — career/personal background for Claude Code sessions,
 # not meant to be visible in this public portfolio repo.
-PROJECT_CONTEXT.md
+docs/PROJECT_CONTEXT.md
+
+# Kept local by choice (see README's "Development process") — tooling
+# configuration for Claude Code, not project content.
 CLAUDE.md
