@@ -20,3 +20,4 @@ Some redundancy with README.md and PROJECT_CONTEXT.md is expected and fine — t
 | 0.8 | Config schema | Done | [0.8-config-schema.md](0.8-config-schema.md) |
 | 0.9 | Experiment logging | Done | [0.9-experiment-logging.md](0.9-experiment-logging.md) |
 | 0.10 | Project-wide seed | Done | [0.10-seed.md](0.10-seed.md) |
+| 1.2 | Held-out split (carved) | Done | [1.2-held-out-split.md](1.2-held-out-split.md) |
