@@ -24,8 +24,7 @@ def test_all_modules_import():
         importlib.import_module(name)
 
 
-def test_seed_policy_is_a_single_int_somewhere():
-    # Placeholder for 0.10 (seed policy). Once you've fixed the project-wide
-    # seed, replace this with a real assertion, e.g. importing a SEED
-    # constant from src and checking every module uses it.
-    assert True
+def test_seed_is_42():
+    from src.data.split import SEED
+
+    assert SEED == 42

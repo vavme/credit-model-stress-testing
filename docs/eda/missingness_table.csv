@@ -1,0 +1,123 @@
+column,dtype,missing_count,missing_pct,family
+COMMONAREA_AVG,float64,128839,69.8292,building/housing attributes (_AVG/_MODE/_MEDI)
+COMMONAREA_MEDI,float64,128839,69.8292,building/housing attributes (_AVG/_MODE/_MEDI)
+COMMONAREA_MODE,float64,128839,69.8292,building/housing attributes (_AVG/_MODE/_MEDI)
+NONLIVINGAPARTMENTS_AVG,float64,127994,69.3712,building/housing attributes (_AVG/_MODE/_MEDI)
+NONLIVINGAPARTMENTS_MEDI,float64,127994,69.3712,building/housing attributes (_AVG/_MODE/_MEDI)
+NONLIVINGAPARTMENTS_MODE,float64,127994,69.3712,building/housing attributes (_AVG/_MODE/_MEDI)
+FONDKAPREMONT_MODE,object,126059,68.3224,building/housing attributes (_AVG/_MODE/_MEDI)
+LIVINGAPARTMENTS_AVG,float64,126018,68.3002,building/housing attributes (_AVG/_MODE/_MEDI)
+LIVINGAPARTMENTS_MEDI,float64,126018,68.3002,building/housing attributes (_AVG/_MODE/_MEDI)
+LIVINGAPARTMENTS_MODE,float64,126018,68.3002,building/housing attributes (_AVG/_MODE/_MEDI)
+FLOORSMIN_AVG,float64,125175,67.8433,building/housing attributes (_AVG/_MODE/_MEDI)
+FLOORSMIN_MEDI,float64,125175,67.8433,building/housing attributes (_AVG/_MODE/_MEDI)
+FLOORSMIN_MODE,float64,125175,67.8433,building/housing attributes (_AVG/_MODE/_MEDI)
+YEARS_BUILD_AVG,float64,122602,66.4488,building/housing attributes (_AVG/_MODE/_MEDI)
+YEARS_BUILD_MEDI,float64,122602,66.4488,building/housing attributes (_AVG/_MODE/_MEDI)
+YEARS_BUILD_MODE,float64,122602,66.4488,building/housing attributes (_AVG/_MODE/_MEDI)
+OWN_CAR_AGE,float64,121853,66.0428,other (ungrouped)
+LANDAREA_AVG,float64,109328,59.2544,building/housing attributes (_AVG/_MODE/_MEDI)
+LANDAREA_MEDI,float64,109328,59.2544,building/housing attributes (_AVG/_MODE/_MEDI)
+LANDAREA_MODE,float64,109328,59.2544,building/housing attributes (_AVG/_MODE/_MEDI)
+BASEMENTAREA_AVG,float64,107775,58.4127,building/housing attributes (_AVG/_MODE/_MEDI)
+BASEMENTAREA_MEDI,float64,107775,58.4127,building/housing attributes (_AVG/_MODE/_MEDI)
+BASEMENTAREA_MODE,float64,107775,58.4127,building/housing attributes (_AVG/_MODE/_MEDI)
+EXT_SOURCE_1,float64,104043,56.3900,EXT_SOURCE_*
+NONLIVINGAREA_AVG,float64,101618,55.0757,building/housing attributes (_AVG/_MODE/_MEDI)
+NONLIVINGAREA_MEDI,float64,101618,55.0757,building/housing attributes (_AVG/_MODE/_MEDI)
+NONLIVINGAREA_MODE,float64,101618,55.0757,building/housing attributes (_AVG/_MODE/_MEDI)
+ELEVATORS_AVG,float64,98206,53.2265,building/housing attributes (_AVG/_MODE/_MEDI)
+ELEVATORS_MEDI,float64,98206,53.2265,building/housing attributes (_AVG/_MODE/_MEDI)
+ELEVATORS_MODE,float64,98206,53.2265,building/housing attributes (_AVG/_MODE/_MEDI)
+WALLSMATERIAL_MODE,object,93670,50.7680,building/housing attributes (_AVG/_MODE/_MEDI)
+APARTMENTS_AVG,float64,93462,50.6553,building/housing attributes (_AVG/_MODE/_MEDI)
+APARTMENTS_MEDI,float64,93462,50.6553,building/housing attributes (_AVG/_MODE/_MEDI)
+APARTMENTS_MODE,float64,93462,50.6553,building/housing attributes (_AVG/_MODE/_MEDI)
+ENTRANCES_AVG,float64,92770,50.2802,building/housing attributes (_AVG/_MODE/_MEDI)
+ENTRANCES_MEDI,float64,92770,50.2802,building/housing attributes (_AVG/_MODE/_MEDI)
+ENTRANCES_MODE,float64,92770,50.2802,building/housing attributes (_AVG/_MODE/_MEDI)
+LIVINGAREA_AVG,float64,92534,50.1523,building/housing attributes (_AVG/_MODE/_MEDI)
+LIVINGAREA_MEDI,float64,92534,50.1523,building/housing attributes (_AVG/_MODE/_MEDI)
+LIVINGAREA_MODE,float64,92534,50.1523,building/housing attributes (_AVG/_MODE/_MEDI)
+HOUSETYPE_MODE,object,92424,50.0927,building/housing attributes (_AVG/_MODE/_MEDI)
+FLOORSMAX_AVG,float64,91673,49.6856,building/housing attributes (_AVG/_MODE/_MEDI)
+FLOORSMAX_MEDI,float64,91673,49.6856,building/housing attributes (_AVG/_MODE/_MEDI)
+FLOORSMAX_MODE,float64,91673,49.6856,building/housing attributes (_AVG/_MODE/_MEDI)
+YEARS_BEGINEXPLUATATION_AVG,float64,89898,48.7236,building/housing attributes (_AVG/_MODE/_MEDI)
+YEARS_BEGINEXPLUATATION_MEDI,float64,89898,48.7236,building/housing attributes (_AVG/_MODE/_MEDI)
+YEARS_BEGINEXPLUATATION_MODE,float64,89898,48.7236,building/housing attributes (_AVG/_MODE/_MEDI)
+TOTALAREA_MODE,float64,88967,48.2190,building/housing attributes (_AVG/_MODE/_MEDI)
+EMERGENCYSTATE_MODE,object,87370,47.3535,building/housing attributes (_AVG/_MODE/_MEDI)
+OCCUPATION_TYPE,object,57892,31.3768,other (ungrouped)
+EXT_SOURCE_3,float64,36560,19.8151,EXT_SOURCE_*
+AMT_REQ_CREDIT_BUREAU_DAY,float64,24878,13.4836,AMT_REQ_CREDIT_BUREAU_*
+AMT_REQ_CREDIT_BUREAU_HOUR,float64,24878,13.4836,AMT_REQ_CREDIT_BUREAU_*
+AMT_REQ_CREDIT_BUREAU_MON,float64,24878,13.4836,AMT_REQ_CREDIT_BUREAU_*
+AMT_REQ_CREDIT_BUREAU_QRT,float64,24878,13.4836,AMT_REQ_CREDIT_BUREAU_*
+AMT_REQ_CREDIT_BUREAU_WEEK,float64,24878,13.4836,AMT_REQ_CREDIT_BUREAU_*
+AMT_REQ_CREDIT_BUREAU_YEAR,float64,24878,13.4836,AMT_REQ_CREDIT_BUREAU_*
+NAME_TYPE_SUITE,object,777,0.4211,other (ungrouped)
+DEF_30_CNT_SOCIAL_CIRCLE,float64,622,0.3371,*_SOCIAL_CIRCLE
+DEF_60_CNT_SOCIAL_CIRCLE,float64,622,0.3371,*_SOCIAL_CIRCLE
+OBS_30_CNT_SOCIAL_CIRCLE,float64,622,0.3371,*_SOCIAL_CIRCLE
+OBS_60_CNT_SOCIAL_CIRCLE,float64,622,0.3371,*_SOCIAL_CIRCLE
+EXT_SOURCE_2,float64,413,0.2238,EXT_SOURCE_*
+AMT_GOODS_PRICE,float64,161,0.0873,other (ungrouped)
+AMT_ANNUITY,float64,7,0.0038,other (ungrouped)
+CNT_FAM_MEMBERS,float64,1,0.0005,other (ungrouped)
+DAYS_LAST_PHONE_CHANGE,float64,1,0.0005,other (ungrouped)
+AMT_CREDIT,float64,0,0.0000,other (ungrouped)
+AMT_INCOME_TOTAL,float64,0,0.0000,other (ungrouped)
+CNT_CHILDREN,int64,0,0.0000,other (ungrouped)
+CODE_GENDER,object,0,0.0000,other (ungrouped)
+DAYS_BIRTH,int64,0,0.0000,other (ungrouped)
+DAYS_EMPLOYED,int64,0,0.0000,other (ungrouped)
+DAYS_ID_PUBLISH,int64,0,0.0000,other (ungrouped)
+DAYS_REGISTRATION,float64,0,0.0000,other (ungrouped)
+FLAG_CONT_MOBILE,int64,0,0.0000,other (ungrouped)
+FLAG_DOCUMENT_10,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_11,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_12,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_13,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_14,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_15,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_16,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_17,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_18,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_19,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_2,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_20,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_21,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_3,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_4,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_5,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_6,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_7,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_8,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_DOCUMENT_9,int64,0,0.0000,FLAG_DOCUMENT_*
+FLAG_EMAIL,int64,0,0.0000,other (ungrouped)
+FLAG_EMP_PHONE,int64,0,0.0000,other (ungrouped)
+FLAG_MOBIL,int64,0,0.0000,other (ungrouped)
+FLAG_OWN_CAR,object,0,0.0000,other (ungrouped)
+FLAG_OWN_REALTY,object,0,0.0000,other (ungrouped)
+FLAG_PHONE,int64,0,0.0000,other (ungrouped)
+FLAG_WORK_PHONE,int64,0,0.0000,other (ungrouped)
+HOUR_APPR_PROCESS_START,int64,0,0.0000,other (ungrouped)
+LIVE_CITY_NOT_WORK_CITY,int64,0,0.0000,other (ungrouped)
+LIVE_REGION_NOT_WORK_REGION,int64,0,0.0000,other (ungrouped)
+NAME_CONTRACT_TYPE,object,0,0.0000,other (ungrouped)
+NAME_EDUCATION_TYPE,object,0,0.0000,other (ungrouped)
+NAME_FAMILY_STATUS,object,0,0.0000,other (ungrouped)
+NAME_HOUSING_TYPE,object,0,0.0000,other (ungrouped)
+NAME_INCOME_TYPE,object,0,0.0000,other (ungrouped)
+ORGANIZATION_TYPE,object,0,0.0000,other (ungrouped)
+REGION_POPULATION_RELATIVE,float64,0,0.0000,other (ungrouped)
+REGION_RATING_CLIENT,int64,0,0.0000,other (ungrouped)
+REGION_RATING_CLIENT_W_CITY,int64,0,0.0000,other (ungrouped)
+REG_CITY_NOT_LIVE_CITY,int64,0,0.0000,other (ungrouped)
+REG_CITY_NOT_WORK_CITY,int64,0,0.0000,other (ungrouped)
+REG_REGION_NOT_LIVE_REGION,int64,0,0.0000,other (ungrouped)
+REG_REGION_NOT_WORK_REGION,int64,0,0.0000,other (ungrouped)
+SK_ID_CURR,int64,0,0.0000,other (ungrouped)
+TARGET,int64,0,0.0000,other (ungrouped)
+WEEKDAY_APPR_PROCESS_START,object,0,0.0000,other (ungrouped)
