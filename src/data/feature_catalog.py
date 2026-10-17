@@ -101,12 +101,9 @@ def column_notes(name: str, s: pd.Series, n: int) -> str:
 
 def build_catalog(df: pd.DataFrame, desc: dict[str, tuple[str, str]]) -> pd.DataFrame:
     n = len(df)
-    rng = np.random.default_rng(SEED)
     rows = []
     for c in df.columns:
         s = df[c]
-        nonnull = s.dropna().unique()
-        ex = rng.choice(nonnull, size=min(3, len(nonnull)), replace=False) if len(nonnull) and c != "SK_ID_CURR" else []
         d, special = desc.get(c, ("(no entry in description file)", ""))
         rows.append(
             {
@@ -118,7 +115,6 @@ def build_catalog(df: pd.DataFrame, desc: dict[str, tuple[str, str]]) -> pd.Data
                 "n_unique": int(s.nunique(dropna=True)),
                 "missing_pct": round(float(s.isna().mean() * 100), 3),
                 "value_summary": value_summary(s, n),
-                "example_values": ", ".join(str(x) for x in ex),
                 "notes": column_notes(c, s, n),
             }
         )
