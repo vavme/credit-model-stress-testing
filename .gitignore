@@ -38,3 +38,7 @@ docs/PROJECT_CONTEXT.md
 # Kept local by choice (see README's "Development process") — tooling
 # configuration for Claude Code, not project content.
 CLAUDE.md
+
+# Internal planning and session logs, kept local
+docs/site_*.md
+reports/eda/qna_log.md

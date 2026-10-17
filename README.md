@@ -8,17 +8,17 @@ I want to find the point where XGBoost stops beating a simple WOE-based credit s
 
 ## Non-goals
 
-- Not competing for Kaggle leaderboard AUC — success is honest offline evaluation on our own held-out split, not a public score (`application_test.csv` is unlabeled and out of scope entirely).
-- Not using all 6 auxiliary tables — sticking to `application_train.csv` and a 25-40 feature shortlist from it.
-- Not running a hyperparameter tuning marathon — a reasonably-tuned GBM is enough; the contribution is the corruption/complexity trade-off, not marginal AUC.
-- Not measuring or optimizing training time, compute, or infrastructure cost — at ~300K rows, logistic regression and a GBM both train in under a minute. Not a meaningful axis at this scale.
-- Not using a neural network as the complex model, and not testing data-hunger/sample-efficiency — the complex model is a GBM (XGBoost).
-- Not quantifying real implementation, governance/validation, or monitoring cost in dollars or hours — these are named as motivation for why complexity isn't free, not something this project measures directly.
-- Not optimizing against a specific bank's business objective (a target approval rate or bad rate cutoff) — the comparison is judged on overall discrimination (AUC/Gini/KS).
-- Not declaring a fixed accuracy threshold (e.g. "must beat by 5 points") as the definition of "worth it" — materiality is read off the bootstrapped confidence interval on the complexity premium at each corruption severity level.
-- Not building a production-serving or real-time scoring pipeline — this stays a research/offline comparison, not a deployable service.
-- Not running a formal fairness or disparate-impact audit — a real bank deployment would need this, but it's a distinct project on its own and out of scope here.
-- Not benchmarking other complex-model families (LightGBM, CatBoost, etc.) — XGBoost is the one complex model, fixed by design, not chosen through a bake-off.
+- Not competing for Kaggle leaderboard AUC: success is honest offline evaluation on our own held-out split, not a public score (`application_test.csv` is unlabeled and out of scope entirely).
+- Not using all 6 auxiliary tables: sticking to `application_train.csv` and a 25-40 feature shortlist from it.
+- Not running a hyperparameter tuning marathon: a reasonably-tuned GBM is enough; the contribution is the corruption/complexity trade-off, not marginal AUC.
+- Not measuring or optimizing training time, compute, or infrastructure cost: at ~300K rows, logistic regression and a GBM both train in under a minute. Not a meaningful axis at this scale.
+- Not using a neural network as the complex model, and not testing data-hunger/sample-efficiency: the complex model is a GBM (XGBoost).
+- Not quantifying real implementation, governance/validation, or monitoring cost in dollars or hours: these are named as motivation for why complexity isn't free, not something this project measures directly.
+- Not optimizing against a specific bank's business objective (a target approval rate or bad rate cutoff): the comparison is judged on overall discrimination (AUC/Gini/KS).
+- Not declaring a fixed accuracy threshold (e.g. "must beat by 5 points") as the definition of "worth it": materiality is read off the bootstrapped confidence interval on the complexity premium at each corruption severity level.
+- Not building a production-serving or real-time scoring pipeline: this stays a research/offline comparison, not a deployable service.
+- Not running a formal fairness or disparate-impact audit: a real bank deployment would need this, but it's a distinct project on its own and out of scope here.
+- Not benchmarking other complex-model families (LightGBM, CatBoost, etc.): XGBoost is the one complex model, fixed by design, not chosen through a bake-off.
 
 ## Data
 
@@ -30,7 +30,7 @@ Kaggle competition data can't be redistributed, so raw CSVs are not committed to
 poetry run python -m src.data.download_home_credit
 ```
 
-This requires a Kaggle API token at `~/.kaggle/kaggle.json` and accepting the competition rules on kaggle.com first — see the docstring in that script for the exact steps.
+This requires a Kaggle API token at `~/.kaggle/kaggle.json` and accepting the competition rules on kaggle.com first; see the docstring in that script for the exact steps.
 
 There's no real calendar date in this dataset (`DAYS_BIRTH`, `DAYS_EMPLOYED`, etc. are relative offsets). That's a deliberate feature, not a limitation: this is a controlled experiment where the independent variable is injected corruption severity, and a real calendar axis would confound results with actual economic-cycle effects.
 
@@ -40,7 +40,7 @@ There's no real calendar date in this dataset (`DAYS_BIRTH`, `DAYS_EMPLOYED`, et
 # 1. Install dependencies (Poetry)
 poetry install
 
-# 2. Fetch the data (see "Data" above — requires a Kaggle API token)
+# 2. Fetch the data (see "Data" above; requires a Kaggle API token)
 poetry run python -m src.data.download_home_credit
 
 # 3. Confirm the scaffold is sound
@@ -61,7 +61,7 @@ src/
   explain/     SHAP + coefficient-based explanations, stability checks
 notebooks/     exploratory work
 tests/         pytest suite
-configs/       experiment configs — YAML, parsed into a dataclass (see docs/decisions/0.8-config-schema.md)
+configs/       experiment configs, YAML, parsed into a dataclass (see docs/decisions/0.8-config-schema.md)
 ```
 
 ## Development process
@@ -70,4 +70,4 @@ This project was built with help from Claude Code for implementation work, along
 
 ## Status
 
-Tracked phase-by-phase in the [execution tracker](https://claude.ai/code/artifact/7e1e5876-5602-419c-808e-30b895829bcf). Phase 0 (Scope Lock & Setup) is complete; currently on Phase 1 (Data Acquisition & EDA).
+Phase 0 (Scope Lock & Setup) is complete; currently on Phase 1 (Data Acquisition & EDA).

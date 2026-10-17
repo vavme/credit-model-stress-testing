@@ -1,0 +1,123 @@
+column,group,cluster,missing_n,missing_pct,n_missing,n_present,rate_missing_pct,rate_present_pct,gap_pp,ci_lo_pp,ci_hi_pp,ratio,informative,adjusted_gap_pp,adjusted_rows_used_pct
+COMMONAREA_AVG,Building / housing attributes,M01,128839,69.829,128839.0,55667.0,8.556,6.956,1.6,1.339,1.861,1.23,True,1.343,100.0
+COMMONAREA_MEDI,Building / housing attributes,M01,128839,69.829,128839.0,55667.0,8.556,6.956,1.6,1.339,1.861,1.23,True,1.343,100.0
+COMMONAREA_MODE,Building / housing attributes,M01,128839,69.829,128839.0,55667.0,8.556,6.956,1.6,1.339,1.861,1.23,True,1.343,100.0
+NONLIVINGAPARTMENTS_AVG,Building / housing attributes,M02,127994,69.371,127994.0,56512.0,8.555,6.981,1.574,1.314,1.834,1.226,True,1.295,100.0
+NONLIVINGAPARTMENTS_MEDI,Building / housing attributes,M02,127994,69.371,127994.0,56512.0,8.555,6.981,1.574,1.314,1.834,1.226,True,1.295,100.0
+NONLIVINGAPARTMENTS_MODE,Building / housing attributes,M02,127994,69.371,127994.0,56512.0,8.555,6.981,1.574,1.314,1.834,1.226,True,1.295,100.0
+FONDKAPREMONT_MODE,Building / housing attributes,M03,126059,68.322,126059.0,58447.0,8.582,6.976,1.606,1.348,1.864,1.23,True,1.293,100.0
+LIVINGAPARTMENTS_AVG,Building / housing attributes,M04,126018,68.3,126018.0,58488.0,8.581,6.979,1.601,1.343,1.859,1.229,True,1.314,100.0
+LIVINGAPARTMENTS_MEDI,Building / housing attributes,M04,126018,68.3,126018.0,58488.0,8.581,6.979,1.601,1.343,1.859,1.229,True,1.314,100.0
+LIVINGAPARTMENTS_MODE,Building / housing attributes,M04,126018,68.3,126018.0,58488.0,8.581,6.979,1.601,1.343,1.859,1.229,True,1.314,100.0
+FLOORSMIN_AVG,Building / housing attributes,M05,125175,67.843,125175.0,59331.0,8.606,6.949,1.656,1.399,1.913,1.238,True,1.352,100.0
+FLOORSMIN_MEDI,Building / housing attributes,M05,125175,67.843,125175.0,59331.0,8.606,6.949,1.656,1.399,1.913,1.238,True,1.352,100.0
+FLOORSMIN_MODE,Building / housing attributes,M05,125175,67.843,125175.0,59331.0,8.606,6.949,1.656,1.399,1.913,1.238,True,1.352,100.0
+YEARS_BUILD_AVG,Building / housing attributes,M06,122602,66.449,122602.0,61904.0,8.649,6.932,1.717,1.463,1.972,1.248,True,1.389,100.0
+YEARS_BUILD_MEDI,Building / housing attributes,M06,122602,66.449,122602.0,61904.0,8.649,6.932,1.717,1.463,1.972,1.248,True,1.389,100.0
+YEARS_BUILD_MODE,Building / housing attributes,M06,122602,66.449,122602.0,61904.0,8.649,6.932,1.717,1.463,1.972,1.248,True,1.389,100.0
+OWN_CAR_AGE,Assets,M07,121853,66.043,121853.0,62653.0,8.492,7.257,1.235,0.978,1.491,1.17,True,1.59,100.0
+LANDAREA_AVG,Building / housing attributes,M08,109328,59.254,109328.0,75178.0,8.774,7.054,1.72,1.471,1.968,1.244,True,1.436,100.0
+LANDAREA_MEDI,Building / housing attributes,M08,109328,59.254,109328.0,75178.0,8.774,7.054,1.72,1.471,1.968,1.244,True,1.436,100.0
+LANDAREA_MODE,Building / housing attributes,M08,109328,59.254,109328.0,75178.0,8.774,7.054,1.72,1.471,1.968,1.244,True,1.436,100.0
+BASEMENTAREA_AVG,Building / housing attributes,M09,107775,58.413,107775.0,76731.0,8.861,6.966,1.895,1.648,2.143,1.272,True,1.55,100.0
+BASEMENTAREA_MEDI,Building / housing attributes,M09,107775,58.413,107775.0,76731.0,8.861,6.966,1.895,1.648,2.143,1.272,True,1.55,100.0
+BASEMENTAREA_MODE,Building / housing attributes,M09,107775,58.413,107775.0,76731.0,8.861,6.966,1.895,1.648,2.143,1.272,True,1.55,100.0
+EXT_SOURCE_1,External scores,M10,104043,56.39,104043.0,80463.0,8.527,7.485,1.042,0.793,1.291,1.139,True,1.525,100.0
+NONLIVINGAREA_AVG,Building / housing attributes,M11,101618,55.076,101618.0,82888.0,9.001,6.935,2.067,1.82,2.313,1.298,True,1.709,100.0
+NONLIVINGAREA_MEDI,Building / housing attributes,M11,101618,55.076,101618.0,82888.0,9.001,6.935,2.067,1.82,2.313,1.298,True,1.709,100.0
+NONLIVINGAREA_MODE,Building / housing attributes,M11,101618,55.076,101618.0,82888.0,9.001,6.935,2.067,1.82,2.313,1.298,True,1.709,100.0
+ELEVATORS_AVG,Building / housing attributes,M12,98206,53.226,98206.0,86300.0,9.042,6.97,2.072,1.825,2.319,1.297,True,1.669,100.0
+ELEVATORS_MEDI,Building / housing attributes,M12,98206,53.226,98206.0,86300.0,9.042,6.97,2.072,1.825,2.319,1.297,True,1.669,100.0
+ELEVATORS_MODE,Building / housing attributes,M12,98206,53.226,98206.0,86300.0,9.042,6.97,2.072,1.825,2.319,1.297,True,1.669,100.0
+WALLSMATERIAL_MODE,Building / housing attributes,M13,93670,50.768,93670.0,90836.0,9.077,7.038,2.039,1.791,2.287,1.29,True,1.629,100.0
+APARTMENTS_AVG,Building / housing attributes,M14,93462,50.655,93462.0,91044.0,9.103,7.015,2.088,1.84,2.336,1.298,True,1.663,100.0
+APARTMENTS_MEDI,Building / housing attributes,M14,93462,50.655,93462.0,91044.0,9.103,7.015,2.088,1.84,2.336,1.298,True,1.663,100.0
+APARTMENTS_MODE,Building / housing attributes,M14,93462,50.655,93462.0,91044.0,9.103,7.015,2.088,1.84,2.336,1.298,True,1.663,100.0
+ENTRANCES_AVG,Building / housing attributes,M15,92770,50.28,92770.0,91736.0,9.118,7.016,2.102,1.854,2.351,1.3,True,1.67,100.0
+ENTRANCES_MEDI,Building / housing attributes,M15,92770,50.28,92770.0,91736.0,9.118,7.016,2.102,1.854,2.351,1.3,True,1.67,100.0
+ENTRANCES_MODE,Building / housing attributes,M15,92770,50.28,92770.0,91736.0,9.118,7.016,2.102,1.854,2.351,1.3,True,1.67,100.0
+LIVINGAREA_AVG,Building / housing attributes,M16,92534,50.152,92534.0,91972.0,9.098,7.041,2.057,1.809,2.305,1.292,True,1.651,100.0
+LIVINGAREA_MEDI,Building / housing attributes,M16,92534,50.152,92534.0,91972.0,9.098,7.041,2.057,1.809,2.305,1.292,True,1.651,100.0
+LIVINGAREA_MODE,Building / housing attributes,M16,92534,50.152,92534.0,91972.0,9.098,7.041,2.057,1.809,2.305,1.292,True,1.651,100.0
+HOUSETYPE_MODE,Building / housing attributes,M17,92424,50.093,92424.0,92082.0,9.11,7.032,2.078,1.83,2.327,1.296,True,1.654,100.0
+FLOORSMAX_AVG,Building / housing attributes,M18,91673,49.686,91673.0,92833.0,9.146,7.014,2.132,1.883,2.38,1.304,True,1.7,100.0
+FLOORSMAX_MEDI,Building / housing attributes,M18,91673,49.686,91673.0,92833.0,9.146,7.014,2.132,1.883,2.38,1.304,True,1.7,100.0
+FLOORSMAX_MODE,Building / housing attributes,M18,91673,49.686,91673.0,92833.0,9.146,7.014,2.132,1.883,2.38,1.304,True,1.7,100.0
+YEARS_BEGINEXPLUATATION_AVG,Building / housing attributes,M19,89898,48.724,89898.0,94608.0,9.17,7.03,2.14,1.891,2.39,1.304,True,1.711,100.0
+YEARS_BEGINEXPLUATATION_MEDI,Building / housing attributes,M19,89898,48.724,89898.0,94608.0,9.17,7.03,2.14,1.891,2.39,1.304,True,1.711,100.0
+YEARS_BEGINEXPLUATATION_MODE,Building / housing attributes,M19,89898,48.724,89898.0,94608.0,9.17,7.03,2.14,1.891,2.39,1.304,True,1.711,100.0
+TOTALAREA_MODE,Building / housing attributes,M20,88967,48.219,88967.0,95539.0,9.198,7.025,2.172,1.923,2.422,1.309,True,1.728,100.0
+EMERGENCYSTATE_MODE,Building / housing attributes,M21,87370,47.353,87370.0,97136.0,9.223,7.039,2.184,1.934,2.435,1.31,True,1.74,100.0
+OCCUPATION_TYPE,Income and employment,M22,57892,31.377,57892.0,126614.0,6.566,8.762,-2.196,-2.451,-1.942,0.749,True,-0.485,82.0
+EXT_SOURCE_3,External scores,M23,36560,19.815,36560.0,147946.0,9.349,7.758,1.591,1.263,1.92,1.205,True,1.544,100.0
+AMT_REQ_CREDIT_BUREAU_DAY,Credit bureau enquiries,M24,24878,13.484,24878.0,159628.0,10.527,7.69,2.837,2.434,3.24,1.369,True,2.773,100.0
+AMT_REQ_CREDIT_BUREAU_HOUR,Credit bureau enquiries,M24,24878,13.484,24878.0,159628.0,10.527,7.69,2.837,2.434,3.24,1.369,True,2.773,100.0
+AMT_REQ_CREDIT_BUREAU_MON,Credit bureau enquiries,M24,24878,13.484,24878.0,159628.0,10.527,7.69,2.837,2.434,3.24,1.369,True,2.773,100.0
+AMT_REQ_CREDIT_BUREAU_QRT,Credit bureau enquiries,M24,24878,13.484,24878.0,159628.0,10.527,7.69,2.837,2.434,3.24,1.369,True,2.773,100.0
+AMT_REQ_CREDIT_BUREAU_WEEK,Credit bureau enquiries,M24,24878,13.484,24878.0,159628.0,10.527,7.69,2.837,2.434,3.24,1.369,True,2.773,100.0
+AMT_REQ_CREDIT_BUREAU_YEAR,Credit bureau enquiries,M24,24878,13.484,24878.0,159628.0,10.527,7.69,2.837,2.434,3.24,1.369,True,2.773,100.0
+NAME_TYPE_SUITE,Client demographics,M25,777,0.421,,,,,,,,,,,
+DEF_30_CNT_SOCIAL_CIRCLE,Social circle,M26,622,0.337,,,,,,,,,,,
+DEF_60_CNT_SOCIAL_CIRCLE,Social circle,M26,622,0.337,,,,,,,,,,,
+OBS_30_CNT_SOCIAL_CIRCLE,Social circle,M26,622,0.337,,,,,,,,,,,
+OBS_60_CNT_SOCIAL_CIRCLE,Social circle,M26,622,0.337,,,,,,,,,,,
+EXT_SOURCE_2,External scores,M27,413,0.224,,,,,,,,,,,
+AMT_GOODS_PRICE,Loan terms,M28,161,0.087,,,,,,,,,,,
+AMT_ANNUITY,Loan terms,M29,7,0.004,,,,,,,,,,,
+CNT_FAM_MEMBERS,Client demographics,M30,1,0.001,,,,,,,,,,,
+DAYS_LAST_PHONE_CHANGE,Application timing and history,M31,1,0.001,,,,,,,,,,,
+AMT_CREDIT,Loan terms,,0,0.0,,,,,,,,,,,
+AMT_INCOME_TOTAL,Income and employment,,0,0.0,,,,,,,,,,,
+CNT_CHILDREN,Client demographics,,0,0.0,,,,,,,,,,,
+CODE_GENDER,Client demographics,,0,0.0,,,,,,,,,,,
+DAYS_BIRTH,Client demographics,,0,0.0,,,,,,,,,,,
+DAYS_EMPLOYED,Income and employment,,0,0.0,,,,,,,,,,,
+DAYS_ID_PUBLISH,Application timing and history,,0,0.0,,,,,,,,,,,
+DAYS_REGISTRATION,Application timing and history,,0,0.0,,,,,,,,,,,
+FLAG_CONT_MOBILE,Contact flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_10,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_11,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_12,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_13,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_14,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_15,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_16,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_17,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_18,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_19,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_2,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_20,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_21,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_3,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_4,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_5,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_6,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_7,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_8,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_DOCUMENT_9,Document flags,,0,0.0,,,,,,,,,,,
+FLAG_EMAIL,Contact flags,,0,0.0,,,,,,,,,,,
+FLAG_EMP_PHONE,Contact flags,,0,0.0,,,,,,,,,,,
+FLAG_MOBIL,Contact flags,,0,0.0,,,,,,,,,,,
+FLAG_OWN_CAR,Assets,,0,0.0,,,,,,,,,,,
+FLAG_OWN_REALTY,Assets,,0,0.0,,,,,,,,,,,
+FLAG_PHONE,Contact flags,,0,0.0,,,,,,,,,,,
+FLAG_WORK_PHONE,Contact flags,,0,0.0,,,,,,,,,,,
+HOUR_APPR_PROCESS_START,Application timing and history,,0,0.0,,,,,,,,,,,
+LIVE_CITY_NOT_WORK_CITY,Region and address consistency,,0,0.0,,,,,,,,,,,
+LIVE_REGION_NOT_WORK_REGION,Region and address consistency,,0,0.0,,,,,,,,,,,
+NAME_CONTRACT_TYPE,Loan terms,,0,0.0,,,,,,,,,,,
+NAME_EDUCATION_TYPE,Client demographics,,0,0.0,,,,,,,,,,,
+NAME_FAMILY_STATUS,Client demographics,,0,0.0,,,,,,,,,,,
+NAME_HOUSING_TYPE,Client demographics,,0,0.0,,,,,,,,,,,
+NAME_INCOME_TYPE,Income and employment,,0,0.0,,,,,,,,,,,
+ORGANIZATION_TYPE,Income and employment,,0,0.0,,,,,,,,,,,
+REGION_POPULATION_RELATIVE,Region and address consistency,,0,0.0,,,,,,,,,,,
+REGION_RATING_CLIENT,Region and address consistency,,0,0.0,,,,,,,,,,,
+REGION_RATING_CLIENT_W_CITY,Region and address consistency,,0,0.0,,,,,,,,,,,
+REG_CITY_NOT_LIVE_CITY,Region and address consistency,,0,0.0,,,,,,,,,,,
+REG_CITY_NOT_WORK_CITY,Region and address consistency,,0,0.0,,,,,,,,,,,
+REG_REGION_NOT_LIVE_REGION,Region and address consistency,,0,0.0,,,,,,,,,,,
+REG_REGION_NOT_WORK_REGION,Region and address consistency,,0,0.0,,,,,,,,,,,
+SK_ID_CURR,ID and label,,0,0.0,,,,,,,,,,,
+TARGET,ID and label,,0,0.0,,,,,,,,,,,
+WEEKDAY_APPR_PROCESS_START,Application timing and history,,0,0.0,,,,,,,,,,,

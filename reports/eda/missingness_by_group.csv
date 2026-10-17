@@ -1,0 +1,14 @@
+group,columns,columns_with_missing,columns_over_5pct,columns_over_50pct,mean_missing_pct_all_cols,max_missing_pct,rows_with_any_missing_pct
+ID and label,2,0,0,0,0.0,0.0,0.0
+Loan terms,4,2,0,0,0.02,0.09,0.09
+Client demographics,8,2,0,0,0.05,0.42,0.42
+Income and employment,5,1,1,0,6.28,31.38,31.38
+Assets,3,1,1,1,22.01,66.04,66.04
+Building / housing attributes,47,47,47,39,57.8,69.83,74.37
+External scores,3,3,2,1,25.48,56.39,64.42
+Region and address consistency,9,0,0,0,0.0,0.0,0.0
+Contact flags,6,0,0,0,0.0,0.0,0.0
+Document flags,20,0,0,0,0.0,0.0,0.0
+Social circle,4,4,0,0,0.34,0.34,0.34
+Credit bureau enquiries,6,6,6,0,13.48,13.48,13.48
+Application timing and history,5,1,0,0,0.0,0.0,0.0

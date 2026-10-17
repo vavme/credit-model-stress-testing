@@ -1,14 +1,6 @@
 # Decision Log
 
-One file per [You]-tagged backlog item: what got decided, in Vav's own words, and roughly why. This is separate from the other two docs on purpose:
-
-| Doc | What it's for | Read it |
-|---|---|---|
-| `CLAUDE.md` | The rules Claude Code follows every session | Every session |
-| `docs/PROJECT_CONTEXT.md` | The deep narrative background — why this project exists, the full mechanistic argument, the dual audience | Occasionally, when picking the project back up |
-| `docs/decisions/` (this folder) | A dated, itemized record of each individual decision as it closes | Whenever a [You] item is decided, and for interview prep |
-
-Some redundancy with README.md and PROJECT_CONTEXT.md is expected and fine — this folder is the paper trail, not the only copy.
+One file per [You]-tagged backlog item: what got decided, in Vav's own words, and roughly why. A dated, itemized record of each individual decision as it closes.
 
 ## Index
 
