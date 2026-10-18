@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-base="{{base}}">
+<head>
+{{partial:head}}
+<title>Methodology | {{config:site_title}}</title>
+</head>
+<body data-page="methodology" id="top">
+<a class="skip" href="#main">Skip to content</a>
+{{partial:nav}}
+<main id="main" class="wrap page narrow">
+  <h1>Methodology</h1>
+  <p class="lede">How the data was used, how the numbers were made, and what the analysis cannot tell you.</p>
+  <div class="toc"><a href="#data">Data</a><a href="#split">Split</a><a href="#integrity">Integrity</a><a href="#tags">Claim tags</a><a href="#numbers">How numbers are made</a><a href="#handling">Data handling</a><a href="#limits">Limitations</a><a href="#reproduce">Reproduce</a></div>
+
+  <h2 id="data">Data</h2>
+  <p>The file is application_train.csv from the Kaggle competition <a href="{{config:kaggle_url}}">Home Credit Default Risk</a>. It has {{f:n_raw}} loans and {{f:n_cols}} columns. The test file has no labels and is not used. The {{f:n_aux_tables}} other tables are not used. {{tag:doc}}</p>
+
+  <h2 id="split">Split design</h2>
+  <p>One stratified split, made once from the labelled file, with seed {{f:seed}}. Stratified means each part keeps the same share of loans with payment trouble.</p>
+  <div class="scrollx"><table class="plain-table">
+    <thead><tr><th scope="col">Part</th><th scope="col">Loans</th><th scope="col">Share</th><th scope="col">Default rate</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Train</th><td>{{f:n_train}}</td><td>{{f:train_share_pct}}</td><td>{{f:rate_train_pct}}%</td></tr>
+      <tr><th scope="row">Validation</th><td>{{f:n_val}}</td><td>{{f:val_share_pct}}</td><td>{{f:rate_val_pct}}%</td></tr>
+      <tr><th scope="row">Test</th><td>{{f:n_test}}</td><td>{{f:test_share_pct}}</td><td>{{f:rate_test_pct}}%</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Train-only rule.</strong> Every figure on this site comes from the train split. The validation and test splits were not opened. The sizes and default rates above come from a structural check made when the split was created. The test split stays sealed until the final evaluation. {{tag:doc}}{{tag:data}}</p>
+
+  <h2 id="integrity">Integrity checks</h2>
+  <ul>
+    <li>Duplicate rows in the file: {{f:dup_rows}}. Duplicate loan IDs: {{f:dup_loan_numbers}}. {{tag:data}}</li>
+    <li>TARGET has two values, zero and one, and {{f:target_missing}} missing. {{tag:data}}</li>
+    <li>The raw file was only read, never changed. Its checksum was the same before and after the run. {{tag:data}}</li>
+  </ul>
+
+  <h2 id="tags">Claim tags</h2>
+  <p>{{tag:data}} Checked by code on the train split. {{tag:doc}} Taken from the documentation: the Kaggle column description file or the project README. {{tag:general}} General domain knowledge, not checked here. {{tag:nv}} Could not be verified here. {{tag:hyp}} A reading or a prediction, not a finding.</p>
+
+  <h2 id="numbers">How the numbers are made</h2>
+  <ul>
+    <li>A build script reads the train split and writes aggregated files. The page text takes every number from one facts file, so no number is typed by hand into the copy.</li>
+    <li>Build checks fail if a number in the text is not in the facts file, if any file looks like raw data, if a link is broken, or if the site is too large.</li>
+    <li>Column descriptions on the Feature Explorer are from {{desc_source}}.</li>
+    <li>Blocks drafted by AI and not yet adopted by the author carry a label at the top: "{{config:ai_draft_label}}". The author's own text carries a different label. The author can change the wording with one setting.</li>
+  </ul>
+
+  <h2 id="handling">Data handling</h2>
+  <p>Only aggregated figures are shown: counts, rates, bins and summary values. No rows, no loan IDs, and no sample values are on this site. Groups with fewer than {{f:min_cell}} loans are hidden, so that no single loan can be picked out. Kaggle does not allow the raw file to be shared, so it is not.</p>
+
+  <h2 id="limits">Limitations</h2>
+  <ul>
+    <li>The table holds granted loans only, as far as we can tell. Results do not describe all applicants. {{tag:general}}{{tag:nv}}</li>
+    <li>The source and timing of the external scores are not documented. If they hold later information, results would be inflated. {{tag:hyp}}</li>
+    <li>The signal figures look at one column at a time. They do not show what a column adds inside a model.</li>
+    <li>The shortlist, the corruption candidates and their predictions were drafted with AI help and are not yet adopted by the author.</li>
+    <li>Sensitive columns are shown as descriptive data only. This project does not use them to make decisions about people. A fairness review is out of scope for this phase.</li>
+    <li>No model has been trained, so there are no model results on this site.</li>
+  </ul>
+
+  <h2 id="reproduce">Reproduce</h2>
+  <p>With the Kaggle file in place, the repository rebuilds every figure. See the <a href="{{config:repo_url}}">project repository</a> for the exact commands and the dependency lock file.</p>
+</main>
+{{partial:footer}}
+<script type="module" src="{{base}}assets/app.js"></script>
+</body>
+</html>

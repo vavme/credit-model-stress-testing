@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-base="{{base}}">
+<head>
+{{partial:head}}
+<title>Glossary | {{config:site_title}}</title>
+</head>
+<body data-page="glossary" id="top">
+<a class="skip" href="#main">Skip to content</a>
+{{partial:nav}}
+<main id="main" class="wrap page narrow">
+  <h1>Glossary</h1>
+  <p class="lede">Plain-language definitions of the terms used on this site.</p>
+  <dl class="gloss">
+    <dt id="auc">AUC</dt><dd>The chance that a model gives a higher risk score to a loan that went wrong than to one that did not, when you pick one of each at random. A coin flip scores one half. A perfect model scores one. It does not depend on a single cutoff.</dd>
+    <dt id="gini">Gini</dt><dd>The AUC rescaled so that a coin flip scores zero and a perfect model scores one. It equals twice the AUC minus one. Banks often quote it.</dd>
+    <dt id="ks">KS (Kolmogorov-Smirnov)</dt><dd>The largest gap between the share of bad loans and the share of good loans scored below the same cutoff. Zero means no separation. One means perfect separation.</dd>
+    <dt id="prauc">PR-AUC</dt><dd>The area under the precision-recall curve. Precision is the share of flagged loans that really went wrong. Unlike AUC, it depends on how rare the bad loans are. A useless score gets about the default rate.</dd>
+    <dt id="scorecard">Application scorecard</dt><dd>A simple model that turns facts about an applicant into a score for the chance of default. Banks use it to approve, price or review a loan. It is built so that a risk officer can explain each part of the score.</dd>
+    <dt id="default">Default, payment trouble</dt><dd>In this data, TARGET is one when the client paid late by more than a set number of days in at least one of the first instalments. It is not the same as a final write-off.</dd>
+    <dt id="target">TARGET</dt><dd>The outcome column. One means payment trouble in the first instalments, zero means none.</dd>
+    <dt id="imbalance">Class imbalance</dt><dd>When one outcome is much rarer than the other. Here, loans with trouble are rare. Plain accuracy then looks good even for a model that finds nothing.</dd>
+    <dt id="decile">Decile</dt><dd>One tenth of the loans after sorting them by a column. The lowest decile has the lowest values. We compare the default rate in each decile.</dd>
+    <dt id="mcar">MCAR</dt><dd>Missing completely at random. A value is missing for no reason that we can see or imagine.</dd>
+    <dt id="mar">MAR</dt><dd>Missing at random. Whether a value is missing depends on other columns we can see.</dd>
+    <dt id="mnar">MNAR</dt><dd>Missing not at random. Whether a value is missing depends on the value itself, or on something we cannot see. This cannot be proven from the data alone.</dd>
+    <dt id="pattern">Missing pattern</dt><dd>A group of columns that are empty in exactly the same rows.</dd>
+    <dt id="phi">Phi correlation</dt><dd>A correlation between two yes or no columns. Here it tells how often two columns are missing together.</dd>
+    <dt id="pearson">Pearson correlation</dt><dd>A measure of how well two columns follow a straight line together. Extreme values pull it around.</dd>
+    <dt id="spearman">Spearman correlation</dt><dd>A correlation on ranks instead of raw values. It ignores extreme values but still sees only one-directional trends, not humps.</dd>
+    <dt id="placeholder">Placeholder value</dt><dd>A fake value that stands in for "no value", for example a job length of about a thousand years. Models can misread it as real.</dd>
+    <dt id="leakage">Leakage</dt><dd>When a column holds information that would not be known when the decision is made, for example from after the loan was granted. It makes results look better than they would be in real use.</dd>
+    <dt id="proxy">Proxy</dt><dd>A column that stands in for another one, for example a score that partly tracks age.</dd>
+    <dt id="stratified">Stratified split</dt><dd>A split into train, validation and test parts that keeps the share of bad loans the same in each part.</dd>
+    <dt id="heldout">Held-out set</dt><dd>Data kept aside and not used to build or tune anything, so it can give an honest score at the end.</dd>
+    <dt id="woe">WOE (weight of evidence)</dt><dd>A way to turn each bin of a column into a number that shows how much that bin shifts the odds of default. It is the standard building block of a scorecard. It comes in a later phase and is not used on this site.</dd>
+    <dt id="iv">IV (information value)</dt><dd>One number per column that sums up its WOE and ranks how useful it is. It comes in a later phase and is not used on this site.</dd>
+    <dt id="gbm">GBM, gradient boosting</dt><dd>A model made of many small decision trees, each correcting the last one. XGBoost is the version used in this project.</dd>
+    <dt id="premium">Complexity premium</dt><dd>How much better the complex model scores than the simple scorecard. The project calls the complexity "not worth it" when the confidence interval for this gap includes zero.</dd>
+    <dt id="bootstrap">Bootstrap confidence interval</dt><dd>A range for a number, found by re-running the calculation on many resampled copies of the data. If the range includes zero, the difference could be chance.</dd>
+    <dt id="corruption">Corruption</dt><dd>Damage we add on purpose to the data, such as hiding values or changing labels, to see how models cope.</dd>
+    <dt id="severity">Severity</dt><dd>How much damage is added. The plan uses levels from none up to half of the affected rows.</dd>
+    <dt id="drift">Schema or scale drift</dt><dd>When a column quietly changes meaning, units or encoding, for example after a system migration.</dd>
+    <dt id="label-lag">Label lag</dt><dd>When the outcome is recorded before it is known. Late defaults are then recorded as no trouble.</dd>
+  </dl>
+</main>
+{{partial:footer}}
+<script type="module" src="{{base}}assets/app.js"></script>
+</body>
+</html>

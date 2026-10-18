@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-base="{{base}}">
+<head>
+{{partial:head}}
+<title>FAQ | {{config:site_title}}</title>
+</head>
+<body data-page="faq" id="top">
+<a class="skip" href="#main">Skip to content</a>
+{{partial:nav}}
+<main id="main" class="wrap page narrow">
+  <h1>Frequently asked questions</h1>
+  <p class="lede">Prepared reader questions. They were written in advance by the author's assistant, not collected from real readers. Each answer uses only numbers from the analysis.</p>
+  <div class="faq">
+    <details>
+      <summary>Why not use the test file from Kaggle?</summary>
+      <p>That file has no outcome labels. It exists for the contest leaderboard, so it cannot tell us how well a model works. We cut our own train, validation and test split from the labelled file instead: {{f:train_share_pct}}, {{f:val_share_pct}} and {{f:test_share_pct}} of the {{f:n_raw}} loans, with seed {{f:seed}}. The test part stays sealed until the final evaluation. {{tag:doc}}{{tag:data}}</p>
+    </details>
+    <details>
+      <summary>Why does the data have no dates, and is that a problem?</summary>
+      <p>The table only has offsets, such as the number of days before the application. {{tag:data}} That is a limit: we cannot test how a model holds up over real time. It is also a benefit. With no calendar, no economic cycle can explain a result, so the damage we add is the only thing that changes. {{tag:doc}}</p>
+    </details>
+    <details>
+      <summary>Does TARGET = 1 mean the client never repaid?</summary>
+      <p>No. It means a payment was late by more than X days in at least one of the first Y instalments. A client can pay late once, then pay in full, and still be a one. The file does not say what X and Y are. {{tag:doc}} Of {{f:n_train}} loans in the train split, {{f:n_pos}} are a one, which is {{f:default_rate_pct}}. {{tag:data}}</p>
+    </details>
+    <details>
+      <summary>Why is a high accuracy not a good result here?</summary>
+      <p>Because {{f:acc_all_zero_pct}} is what a rule gets by approving everyone and flagging no one. That rule finds none of the {{f:n_pos}} loans with trouble. So we judge models by how well they rank risk, using {{term:auc|AUC}}, {{term:gini|Gini}}, {{term:ks|KS}} and {{term:prauc|PR-AUC}}. {{tag:data}}</p>
+    </details>
+    <details>
+      <summary>Is the missing data random?</summary>
+      <p>Not in a simple way. In {{f:n_patterns_positive_gap}} of the {{f:n_patterns_gt5}} patterns that are more than {{f:thr_missing_pct}} missing, rows with a missing value default more often, by {{f:gap_min_pp}} to {{f:gap_max_pp}} points. Some gaps are by design: car age is missing for {{f:own_car_age_missing_nonowner_pct}} of clients without a car. {{tag:data}} We cannot prove whether values are missing because of their own value, which would be {{term:mnar|MNAR}}. Our reading is a hypothesis. {{tag:hyp}}</p>
+    </details>
+    <details>
+      <summary>Which column matters most, and why not trust one correlation number?</summary>
+      <p>The three EXT_SOURCE scores. Their default rate differs by {{f:ext_range_min_pp}} to {{f:ext_range_max_pp}} points between the lowest and highest decile, and EXT_SOURCE_3 has a Pearson correlation of {{f:ext_source_3_pearson}} with default. {{tag:data}} But one number can hide the shape. Annuity amount has a Spearman correlation of {{f:annuity_spearman}}, while its default rate goes from {{f:annuity_dec_first}} up to {{f:annuity_dec_peak}} and back down to {{f:annuity_dec_last}}. {{tag:data}}</p>
+    </details>
+    <details>
+      <summary>Why do gender and age appear on this site?</summary>
+      <p>They are columns in the data, so they are shown as descriptive features. This project does not use them to make decisions about people, and a fairness review is out of scope for this phase. {{tag:doc}} Age has a Pearson correlation of {{f:days_birth_pearson}} with default, so dropping it would cost some signal. That trade-off is the author's call. {{tag:data}}</p>
+    </details>
+    <details>
+      <summary>Are rejected applicants in the data?</summary>
+      <p>As far as we can tell, no. Every row has an outcome, and only a granted loan has one. This is inferred, not verified. {{tag:general}}{{tag:nv}} A model built on this data ranks people who already passed the lender's screen.</p>
+    </details>
+  </div>
+</main>
+{{partial:footer}}
+<script type="module" src="{{base}}assets/app.js"></script>
+</body>
+</html>

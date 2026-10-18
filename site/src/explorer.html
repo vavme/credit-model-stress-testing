@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-base="{{base}}">
+<head>
+{{partial:head}}
+<title>Feature Explorer | {{config:site_title}}</title>
+</head>
+<body data-page="explorer" id="top">
+<script>if (/[?&]feature=/.test(location.search)) document.documentElement.classList.add("has-feature");</script>
+<a class="skip" href="#main">Skip to content</a>
+{{partial:nav}}
+<main id="main" class="wrap page">
+  <h1>Feature Explorer</h1>
+  <p class="lede">All {{f:n_cols}} columns of the table. Filter the list, then select a column to see its description, how its values are spread, and how the default rate changes across its values. All figures come from the train split and are aggregated. Groups with fewer than {{f:min_cell}} loans are not shown.</p>
+
+  <form class="filters nocheck" id="filters" role="search" aria-label="Filter columns">
+    <div><label for="f-search">Search by name or description</label><input id="f-search" type="search" autocomplete="off"></div>
+    <div><label for="f-group">Group</label><select id="f-group"></select></div>
+    <div><label for="f-type">Type</label><select id="f-type"></select></div>
+    <div><label for="f-missing">Missing share</label><select id="f-missing">
+      <option value="">Any</option><option value="0.0001">Any missing</option><option value="5">More than 5%</option><option value="25">More than 25%</option><option value="50">More than 50%</option></select></div>
+    <div><label for="f-shortlist">Shortlist (draft)</label><select id="f-shortlist">
+      <option value="">Any</option><option value="yes">Proposed</option><option value="option">Excluded, could return</option><option value="no">Excluded</option></select></div>
+    <div><label for="f-sort">Sort by</label><select id="f-sort">
+      <option value="">Table order</option><option value="range_pp">Signal (default rate range)</option><option value="missing_pct">Missing share</option><option value="name">Name</option></select></div>
+    <div><label for="f-flag">Flags</label><select id="f-flag">
+      <option value="">Any</option><option value="quirk">Has a quirk or risk flag</option><option value="sensitive">Sensitive attribute</option><option value="candidate">Corruption candidate (draft)</option></select></div>
+    <div><button type="button" id="f-reset">Reset filters</button></div>
+  </form>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="ex-layout">
+    <section id="detail" class="detail" aria-live="polite" aria-label="Column detail"><p class="muted">Select a column in the table to see its details.</p></section>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Columns table">
+      <table class="ex" id="ex-table">
+        <thead><tr><th scope="col">Name</th><th scope="col">Group</th><th scope="col">Type</th><th scope="col">Missing</th><th scope="col">Signal</th><th scope="col">Shortlist (draft)</th></tr></thead>
+        <tbody id="ex-body"></tbody>
+      </table>
+    </div>
+  </div>
+  <noscript><p>The Feature Explorer needs JavaScript to filter the table. The same facts are in the story on the home page.</p></noscript>
+</main>
+{{partial:footer}}
+<script type="module" src="{{base}}assets/app.js"></script>
+</body>
+</html>

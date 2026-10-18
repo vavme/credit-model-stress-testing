@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" data-base="{{base}}">
+<head>
+{{partial:head}}
+<title>{{config:site_title}}</title>
+</head>
+<body data-page="index" id="top">
+<a class="skip" href="#main">Skip to content</a>
+{{partial:nav}}
+<main id="main">
+
+<!-- LAYER 1: 30 seconds -->
+<section class="hero wrap" aria-labelledby="hero-title">
+  <p class="eyebrow">Portfolio project, data analysis</p>
+  <h1 id="hero-title">Credit Risk Under Data Quality Degradation</h1>
+  <p class="lede">This project asks when a complex credit model stops beating a simple scorecard as data quality gets worse. This site shows the analysis that comes first: what is in the data, what is missing, and what could go wrong.</p>
+
+  <ul class="stats" aria-label="Headline numbers">
+    <li class="stat"><div class="num">{{f:n_train}}</div><div class="lab">loan applications analysed</div><div class="sub">The train split, {{f:train_share_pct}} of the {{f:n_raw}} in the file</div></li>
+    <li class="stat"><div class="num">{{f:n_cols}}</div><div class="lab">columns per application</div><div class="sub">{{f:n_feature_cols}} features, plus the loan ID and the outcome flag</div></li>
+    <li class="stat key"><div class="num">{{f:default_rate_pct}}</div><div class="lab">of loans had payment trouble</div><div class="sub">{{f:n_pos}} of {{f:n_train}} loans</div></li>
+    <li class="stat key"><div class="num">{{f:feature_missing_cell_pct}}</div><div class="lab">of feature cells are empty</div><div class="sub">{{f:missing_cells}} of {{f:feature_cells_total}} cells ({{f:n_train}} rows times {{f:n_feature_cols}} features)</div></li>
+    <li class="stat key"><div class="num">{{f:n_corr_gt010}} of {{f:n_numeric_corr}}</div><div class="lab">numeric features correlate with default above {{f:corr_threshold}}</div><div class="sub">By Pearson: {{f:n_corr_gt010_pearson}}. By Spearman: {{f:n_corr_gt010_spearman}}. Absolute values.</div></li>
+  </ul>
+
+  <div class="exec" id="summary">
+    <h2>Five messages</h2>
+    <ol>
+      <li><strong>The data covers granted loans, and TARGET flags early payment trouble.</strong> It does not mean final loss, and rejected applicants are not in the table. <a href="#s1">Read why</a></li>
+      <li><strong>Only {{f:default_rate_pct}} of loans default, so accuracy would mislead.</strong> An approve-everyone rule scores {{f:acc_all_zero_pct}} and finds no defaulter. <a href="#s3">See the balance</a></li>
+      <li><strong>About a quarter of the feature cells are empty, and the gaps are not random.</strong> {{f:n_cols_gt50}} of {{f:n_cols}} columns are more than half empty, and only {{f:complete_rows_pct}} of rows are complete. <a href="#s4">See the gaps</a></li>
+      <li><strong>Three external scores carry most of the signal.</strong> Their lowest and highest deciles differ by {{f:ext_range_min_pp}} to {{f:ext_range_max_pp}} points of default rate. Most other columns are weak alone. <a href="#s5">See the signal</a></li>
+      <li><strong>The study design is set before any experiment.</strong> {{f:n_shortlist}} of {{f:n_cols}} columns are proposed, and five corruptions are mapped to three real-world failure types, with draft predictions on record. <a href="#s8">See the plan</a></li>
+    </ol>
+    <p class="legend-tags">Every claim carries a small tag: {{tag:data}} checked by code on the train split. {{tag:doc}} from the documentation. {{tag:general}} general domain knowledge. {{tag:nv}} could not be checked here. {{tag:hyp}} our reading, not a finding.</p>
+    <p class="muted">Short on time? Read the five messages. Want the full story? Scroll through nine short sections. Want the detail? Open the <a href="{{base}}explorer.html">Feature Explorer</a>.</p>
+  </div>
+</section>
+
+<!-- LAYER 2: the story -->
+<div class="wrap">
+
+<!-- 1 -->
+<section class="story" id="s1" aria-labelledby="s1t">
+  <p class="kicker nocheck">Section 1 of 9</p>
+  <h2 id="s1t">Each row is one granted loan, and TARGET flags early payment trouble, not final loss</h2>
+  <ul class="points">
+    <li>Home Credit is a consumer lender. The Kaggle contest asked teams to predict which applicants would have repayment problems. {{tag:general}}{{tag:nv}}</li>
+    <li>One row is one loan. The ID column names the loan, not the person. TARGET is 1 when the client paid late by more than X days on at least one of the first Y instalments. The file does not say what X and Y are. {{tag:doc}}</li>
+    <li>Every row has an outcome, so every row is a loan that was granted. Rejected applicants are not in the table. This is inferred, not verified. {{tag:general}}{{tag:nv}} There is also no calendar date. That is on purpose: it lets the experiment change one thing at a time, the damage we add. {{tag:doc}}</li>
+    <li>Banks use this kind of data to build an {{term:scorecard|application scorecard}}: a score for the chance of default, used to approve, price or review a loan. {{tag:general}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s1c">
+    <figcaption class="title" id="s1c">TARGET looks only at the first instalments of a granted loan</figcaption>
+    <div class="flow">
+      <div class="box"><b>Application</b>Client applies. Application columns are recorded.</div>
+      <div class="arrow" aria-hidden="true">&rarr;</div>
+      <div class="box"><b>Loan granted</b>Only these loans are in the table.</div>
+      <div class="arrow" aria-hidden="true">&rarr;</div>
+      <div class="box hit"><b>First Y instalments</b>Any payment late by more than X days? This is what TARGET looks at.</div>
+      <div class="arrow" aria-hidden="true">&rarr;</div>
+      <div class="box hit"><b>TARGET</b>1 if yes, 0 if no.</div>
+      <div class="arrow" aria-hidden="true">&rarr;</div>
+      <div class="box not"><b>Not covered</b>Later payments and the final loss.</div>
+    </div>
+    <p class="chart-note">Text summary: a loan is applied for, granted, then watched for its first Y instalments. TARGET records whether any was late by more than X days. What happens later, and the final loss, is not in the label.</p>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> Our results describe approved loans in this sample. They do not describe every applicant, and they do not describe final losses.</aside>
+  <p class="source">Source: Home Credit Default Risk, application_train.csv, train split, n = {{f:n_train}}. Column descriptions from the Kaggle description file.</p>
+  <p class="more"><a href="{{base}}explorer.html?search=TARGET">See the details in the Feature Explorer</a></p>
+</section>
+
+<!-- 2 -->
+<section class="story" id="s2" aria-labelledby="s2t">
+  <p class="kicker nocheck">Section 2 of 9</p>
+  <h2 id="s2t">The table has {{f:n_cols}} columns, and {{f:n_group_building_housing_attributes}} of them describe the applicant's building</h2>
+  <ul class="points">
+    <li>There are {{f:n_train}} loans and {{f:n_cols}} columns. {{f:n_type_numeric_continuous}} are continuous numbers, {{f:n_type_binary_flag}} are yes or no flags, {{f:n_type_numeric_count}} are counts, {{f:n_type_nominal}} are categories and {{f:n_type_ordinal}} are ordered scales. The rest are the loan ID and the outcome flag. {{tag:data}}</li>
+    <li>The columns fall into {{f:n_groups}} groups. The building group is the largest. Document flags come next with {{f:n_group_document_flags}}, then region with {{f:n_group_region_and_address_consistency}}. {{tag:data}}</li>
+    <li>The table has no repayment history, loan term, interest rate, loan purpose or application date. {{tag:data}}</li>
+    <li>{{f:n_aux_tables}} other tables exist, such as bureau records and earlier applications. They are left out on purpose. {{tag:doc}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s2c">
+    <figcaption class="title" id="s2c">The building group is the largest, with {{f:n_group_building_housing_attributes}} of {{f:n_cols}} columns</figcaption>
+    <div class="chartbody" data-chart="groups"></div>
+    <p class="chart-note">Text summary: columns per group, largest first. Building {{f:n_group_building_housing_attributes}}, document flags {{f:n_group_document_flags}}, region {{f:n_group_region_and_address_consistency}}, client demographics {{f:n_group_client_demographics}}, contact flags {{f:n_group_contact_flags}}, bureau enquiries {{f:n_group_credit_bureau_enquiries}}, income and employment {{f:n_group_income_and_employment}}, timing and history {{f:n_group_application_timing_and_history}}, loan terms {{f:n_group_loan_terms}}, social circle {{f:n_group_social_circle}}, assets {{f:n_group_assets}}, external scores {{f:n_group_external_scores}}, ID and label {{f:n_group_identifier_and_label}}.</p>
+    <div class="chartbody" data-chart="types"></div>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> A bank would normally use credit history. This table does not have it, so the three external scores will matter a lot. See the signal section.</aside>
+  <p class="source">Source: train split, n = {{f:n_train}} rows, {{f:n_cols}} columns. File: feature_catalog.csv.</p>
+  <p class="more"><a href="{{base}}explorer.html">See all columns in the Feature Explorer</a></p>
+</section>
+
+<!-- 3 -->
+<section class="story" id="s3" aria-labelledby="s3t">
+  <p class="kicker nocheck">Section 3 of 9</p>
+  <h2 id="s3t">Only {{f:default_rate_pct}} of loans default, so accuracy is a misleading way to judge a model</h2>
+  <ul class="points">
+    <li>{{f:n_pos}} loans have payment trouble and {{f:n_neg}} do not. That is {{f:imbalance_ratio}} loans without trouble for every one with trouble. {{tag:data}}</li>
+    <li>A rule that approves everyone is {{f:acc_all_zero_pct}} accurate and finds none of the {{f:n_pos}} problem loans. {{tag:data}}</li>
+    <li>So we judge models by how well they rank risk, with {{term:auc|AUC}}, {{term:gini|Gini}}, {{term:ks|KS}} and {{term:prauc|PR-AUC}}. They do not depend on one cutoff. {{tag:general}}</li>
+    <li>A useless score gets an AUC of {{f:auc_useless}}. Its PR-AUC equals the default rate, {{f:ap_floor}}. {{tag:data}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s3c">
+    <figcaption class="title" id="s3c">An approve-everyone rule is {{f:acc_all_zero_pct}} accurate and catches no defaulter</figcaption>
+    <div class="chartbody" data-chart="waffle"></div>
+    <p class="chart-note">Text summary: of every {{f:waffle_total}} loans, about {{f:waffle_filled}} have payment trouble ({{f:default_rate_pct}}, which is {{f:n_pos}} of {{f:n_train}}). The other loans do not.</p>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> Every later result is judged by rank measures. When we hide defaults in the labels later, the class ratio changes too: hiding half of the defaults would cut the default rate to {{f:hide_50_rate_pct}}.</aside>
+  <p class="source">Source: train split, n = {{f:n_train}}. File: section4_target.md.</p>
+  <p class="more"><a href="{{base}}explorer.html?search=TARGET">See TARGET in the Feature Explorer</a></p>
+</section>
+
+<!-- 4 -->
+<section class="story" id="s4" aria-labelledby="s4t">
+  <p class="kicker nocheck">Section 4 of 9</p>
+  <h2 id="s4t">Missing data is widespread, comes in blocks, and is linked to default, so how we handle it matters</h2>
+  <ul class="points">
+    <li>{{f:n_cols_any_missing}} of {{f:n_cols}} columns have missing values. {{f:n_cols_gt50}} are more than half empty. Only {{f:complete_rows_pct}} of rows are complete. {{tag:data}}</li>
+    <li>The missing values form {{f:n_patterns}} patterns. The {{f:n_building_patterns}} building patterns move together: their correlation is between {{f:phi_building_min}} and {{f:phi_building_max}}. {{tag:data}}</li>
+    <li>Some gaps are by design. Car age is missing for {{f:own_car_age_missing_nonowner_pct}} of clients without a car. Occupation is missing for {{f:occupation_missing_pensioner_pct}} of pensioners. {{tag:data}}</li>
+    <li>In {{f:n_patterns_positive_gap}} of the {{f:n_patterns_gt5}} patterns that are more than {{f:thr_missing_pct}} missing, rows with a missing value default more often than rows with a value, by {{f:gap_min_pp}} to {{f:gap_max_pp}} points. Occupation goes the other way, mostly because of the pensioner effect. {{tag:data}}</li>
+  </ul>
+  <details class="plain">
+    <summary>Missing at random or not? Three terms in plain words</summary>
+    <p><strong>{{term:mcar|MCAR}}, missing completely at random.</strong> A value is missing for no reason at all. Nothing in this data looks like that.</p>
+    <p><strong>{{term:mar|MAR}}, missing at random.</strong> Whether a value is missing depends on other columns we can see. Car age is missing exactly when the client has no car.</p>
+    <p><strong>{{term:mnar|MNAR}}, missing not at random.</strong> Whether a value is missing depends on the value itself, or on something we cannot see. We cannot prove this from the data, because the value we would need to check is the one that is missing.</p>
+    <p>Our reading of the patterns below is a hypothesis. {{tag:hyp}}</p>
+  </details>
+  <figure class="chart" aria-labelledby="s4c">
+    <figcaption class="title" id="s4c">Rows with a missing value default more often in {{f:n_families_positive}} of {{f:n_families}} column families</figcaption>
+    <div class="chartbody" data-chart="dumbbell"></div>
+    <p class="chart-note">Text summary: for each column family, the default rate of rows where the value is present (grey) and where it is missing (blue). Missing rows default more often for building attributes, bureau enquiries, EXT_SOURCE_3, EXT_SOURCE_1 and car age. Occupation is the exception.</p>
+    <details class="chart-details"><summary>More views: missing share by group, which patterns occur together, all patterns</summary>
+      <div class="chartbody" data-chart="missing_groups"></div>
+      <div class="chartbody" data-chart="heatmap"></div>
+      <div class="chartbody scrollx" data-chart="patterns_table"></div>
+    </details>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> Scenario A starts from data that is already missing. A damage level of 0% will mean the natural level, not none.</aside>
+  <p class="source">Source: train split, n = {{f:n_train}}. Files: section5_facts.md, missingness_by_feature.csv.</p>
+  <p class="more"><a href="{{base}}explorer.html?missing_min=5">See all columns that are more than {{f:thr_missing_pct}} missing in the Feature Explorer</a></p>
+</section>
+
+<!-- 5 -->
+<section class="story" id="s5" aria-labelledby="s5t">
+  <p class="kicker nocheck">Section 5 of 9</p>
+  <h2 id="s5t">Three external scores carry most of the signal, and most other columns are weak on their own</h2>
+  <ul class="points">
+    <li>For the three EXT_SOURCE columns, the default rate differs by {{f:ext_range_min_pp}} to {{f:ext_range_max_pp}} points between the lowest and highest {{term:decile|decile}}. For EXT_SOURCE_3 it falls from {{f:ext_source_3_dec_first}} to {{f:ext_source_3_dec_last}}. {{tag:data}}</li>
+    <li>The next strongest are goods price ({{f:goods_range_pp}} points, but not a straight line), then employment length ({{f:dayemp_range_pp}}) and age ({{f:birth_range_pp}}). {{tag:data}}</li>
+    <li>Only {{f:n_corr_gt010}} of {{f:n_numeric_corr}} numeric features have a correlation above {{f:corr_threshold}} with default. {{f:n_noise}} of {{f:n_ranked}} look like noise next to a test with shuffled labels. {{tag:data}}</li>
+    <li>One correlation number can hide the shape. Annuity amount has a {{term:spearman|Spearman}} correlation of {{f:annuity_spearman}}, yet its default rate goes from {{f:annuity_dec_first}} up to {{f:annuity_dec_peak}} and back down to {{f:annuity_dec_last}}. {{tag:data}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s5c">
+    <figcaption class="title" id="s5c">Default rate falls steeply across the deciles of each external score</figcaption>
+    <div class="chartbody" data-chart="signal"></div>
+    <p class="chart-note">Text summary: EXT_SOURCE_3 default rate by decile runs from {{f:ext_source_3_dec_first}} in the lowest decile to {{f:ext_source_3_dec_last}} in the highest. EXT_SOURCE_2 runs from {{f:ext_source_2_dec_first}} to {{f:ext_source_2_dec_last}}, and EXT_SOURCE_1 from {{f:ext_source_1_dec_first}} to {{f:ext_source_1_dec_last}}. Pick another feature on the left to see its pattern.</p>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> Models will lean on three scores whose source and timing are not documented. If they hold information from after the loan was granted, every result is inflated. That is a hypothesis. {{tag:hyp}} These scores are also the most important place to test damage.</aside>
+  <p class="source">Source: train split, decile bins, about {{f:n_per_decile_full}} loans per bin for a fully observed column. The number of loans in each bin is printed under each bar. Files: bivariate_signal_ranking.csv, bivariate_numeric_bins.csv.</p>
+  <p class="more"><a href="{{base}}explorer.html?sort=range_pp">See all features ranked by signal in the Feature Explorer</a></p>
+</section>
+
+<!-- 6 -->
+<section class="story" id="s6" aria-labelledby="s6t">
+  <p class="kicker nocheck">Section 6 of 9</p>
+  <h2 id="s6t">The data has quirks a model can misread: placeholders, outliers, near-duplicates and sensitive fields</h2>
+  <ul class="points">
+    <li>DAYS_EMPLOYED is {{f:sentinel_value}}, about a thousand years, in {{f:sentinel_n}} rows ({{f:sentinel_pct}}). They are all pensioners ({{f:sentinel_pensioner_n}}) or unemployed ({{f:sentinel_unemployed_n}}). The same rows have XNA as employer type. {{tag:data}}</li>
+    <li>One income is {{f:income_max}} while the median is {{f:income_median}}. {{tag:data}}</li>
+    <li>{{f:n_near_constant}} columns are at least {{f:thr_const_pct}} one value. {{f:n_building_stems}} building columns come in three near-identical versions, with correlation {{f:building_twin_corr_min}} or more. {{tag:data}}</li>
+    <li>Two oddities are unexplained: {{f:car_spike_n}} cars aged {{f:car_spike_age_low}} or {{f:car_spike_age_high}} with nothing between {{f:car_gap_start}} and {{f:car_age_max_gap}}, and {{f:goods_clump_pct}} of goods prices equal to exactly {{f:goods_clump_value}}. {{tag:data}}{{tag:nv}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s6c">
+    <figcaption class="title" id="s6c">{{f:sentinel_n}} rows ({{f:sentinel_pct}}) hold a placeholder, not a real job length</figcaption>
+    <div class="chartbody" data-chart="days_employed"></div>
+    <p class="chart-note">Text summary: years in current job for the loans with a real value, as a histogram. A separate bar at the far right shows the {{f:sentinel_n}} rows that hold the placeholder {{f:sentinel_value}}. Their default rate is {{f:sentinel_rate_pct}}, against {{f:nonsentinel_rate_pct}} for the other rows.</p>
+  </figure>
+  <div class="scrollx">
+  <table class="plain-table">
+    <caption class="muted" style="text-align:left;padding:6px 0">Risk flags</caption>
+    <thead><tr><th scope="col">Issue</th><th scope="col">What the data shows</th><th scope="col">Proposed handling</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Placeholder value</th><td>{{f:sentinel_n}} rows hold {{f:sentinel_value}} in DAYS_EMPLOYED. Employer type is XNA in {{f:sentinel_xna_org_n}} rows, the same ones. {{tag:data}}</td><td>Replace with missing and add a flag.</td></tr>
+      <tr><th scope="row">Outliers</th><td>Income up to {{f:income_max}}. Social circle count up to {{f:obs30_max}}, against a 99th percentile of {{f:obs30_p99}}. Children up to {{f:children_max}}. {{tag:data}}</td><td>Cap at a high percentile, or use bins.</td></tr>
+      <tr><th scope="row">Near-duplicate columns</th><td>{{f:n_building_stems}} building stems appear three times, with correlation {{f:building_twin_corr_min}} or more. {{tag:data}}</td><td>Keep at most one version per stem.</td></tr>
+      <tr><th scope="row">Unexplained oddities</th><td>Car age spike and the goods price clump above. Causes are not known. {{tag:data}}{{tag:nv}}</td><td>Ask the data owner. Until then, state them as unexplained.</td></tr>
+      <tr><th scope="row">Possible leakage</th><td>The origin and timing of the EXT_SOURCE scores and of the social circle default counts are not documented. They could carry information from after the loan was granted. {{tag:hyp}}{{tag:nv}}</td><td>Test the model with and without them.</td></tr>
+      <tr><th scope="row">Sensitive fields</th><td>Gender, age, family status and number of children are in the table. {{tag:doc}}</td><td>Descriptive use only. See the note below.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="source">Gender, age and family status appear on this site only as descriptive columns. This project does not use them to make decisions about people. A fairness review is out of scope for this phase.</p>
+  <aside class="sowhat"><strong>So what for this project.</strong> The clean starting point is not pristine. How these quirks are handled is part of the baseline, and it has to be stated.</aside>
+  <p class="source">Source: train split, n = {{f:n_train}}. Files: section3_facts.md, section6_facts.md.</p>
+  <p class="more"><a href="{{base}}explorer.html?flag=quirk">See all columns with quirks in the Feature Explorer</a></p>
+</section>
+
+<!-- 7 -->
+<section class="story" id="s7" aria-labelledby="s7t">
+  <p class="kicker nocheck">Section 7 of 9</p>
+  <h2 id="s7t">From {{f:n_cols}} columns we propose {{f:n_shortlist}}, chosen for signal, interpretability and low redundancy</h2>
+  {{draft}}
+  <ul class="points">
+    <li>{{f:n_core}} are core picks. {{f:n_pending}} more, age and marital status, need the author's ruling because they are sensitive. {{tag:data}}</li>
+    <li>{{f:n_excluded}} columns are excluded, each with a reason. The biggest groups are {{f:n_ex_building}} building twins and {{f:n_ex_docs}} document flags. {{tag:data}}</li>
+    <li>{{f:n_options}} excluded columns could come back if the author decides so, for example gender. {{tag:data}}</li>
+    <li>The highest correlation between two chosen numeric columns is {{f:shortlist_max_corr}}. {{f:shortlist_fully_observed}} of {{f:n_shortlist}} have no missing values, and {{f:shortlist_missing_gt5}} are more than {{f:thr_missing_pct}} missing. {{tag:data}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s7c">
+    {{draft}}
+    <figcaption class="title" id="s7c">{{f:n_shortlist}} of {{f:n_cols}} columns are proposed, spread over most groups</figcaption>
+    <div class="chartbody" data-chart="matrix"></div>
+    <p class="caption-live" id="matrix-caption" aria-live="polite">Select a square to see the column and the reason.</p>
+    <p class="chart-note">Text summary: every column is one square, grouped by feature group. Proposed columns are blue. Excluded columns are grey. The grouped list below gives the same information as text.</p>
+    <details class="chart-details" open><summary>The proposed columns and why</summary>
+      <div class="chartbody scrollx" data-chart="shortlist_list"></div>
+    </details>
+    <details class="chart-details"><summary>What was excluded and why</summary>
+      <div class="chartbody scrollx" data-chart="exclusions"></div>
+    </details>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> A scorecard needs columns a risk officer can explain. The evidence here is one column at a time, so it does not prove that a column helps inside a model.</aside>
+  <p class="source">Source: train split. The README asks for {{f:shortlist_min}} to {{f:shortlist_max}} features. Files: feature_shortlist.csv, section7_shortlist.md.</p>
+  <p class="more"><a href="{{base}}explorer.html?shortlist=yes">See the proposed columns in the Feature Explorer</a></p>
+</section>
+
+<!-- 8 -->
+<section class="story" id="s8" aria-labelledby="s8t">
+  <p class="kicker nocheck">Section 8 of 9</p>
+  <h2 id="s8t">Five candidate corruptions are mapped to three failure types, with draft predictions written before any experiment</h2>
+  <ul class="points">
+    <li>Scenario A hides values in a way tied to risk. Scenario B records some defaults as no trouble in the training labels. Scenario C changes a field's scale or meaning. {{tag:doc}}</li>
+    <li>The absence of calendar dates is a design choice. It keeps the damage we add as the one thing that changes, so nothing else can explain a result. {{tag:doc}}</li>
+  </ul>
+  <div class="sidebyside">
+    <div class="card author">
+      <span class="authorlabel">{{config:author_label}}</span>
+      <p class="muted">README, written <span class="nocheck">{{hypothesis_date}}</span>, before the EDA.</p>
+      <blockquote>{{hypothesis}}</blockquote>
+    </div>
+    <div class="card draft">
+      {{draft}}
+      <p><strong>What the draft predicts.</strong> Complexity stops paying only when the hidden defaults depend on a feature. For the four feature-level cases, the gain from the complex model stays above zero. {{tag:hyp}}</p>
+      <p><strong>Where the two differ.</strong> The hypothesis expects the gap to shrink gradually under missing data and label lag, and to drop sharply under scale or schema drift. The draft does not expect a sharp drop under drift. The experiment will show which view is closer. {{tag:hyp}}</p>
+    </div>
+  </div>
+  <figure class="chart" aria-labelledby="s8c">
+    {{draft}}
+    <figcaption class="title" id="s8c">Draft: label lag is the only case where the complex model's edge may vanish</figcaption>
+    <div class="chartbody scrollx" data-chart="candidates"></div>
+    <p class="chart-note">Text summary: five candidate corruptions, each with its scenario, a draft rank of the damage it will do at the highest severity (1 is the largest), a draft prediction and what would prove the draft wrong. These are predictions, not results.</p>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> Later results will be scored against predictions that were fixed before the experiment. The author can replace the drafts with their own text before the final write-up.</aside>
+  <p class="source">Source: train split for the current numbers. Files: section8_corruption_candidates.md, section8_facts.md, README hypothesis.</p>
+  <p class="more"><a href="{{base}}explorer.html?candidate=yes">See the candidate columns in the Feature Explorer</a></p>
+</section>
+
+<!-- 9 -->
+<section class="story" id="s9" aria-labelledby="s9t">
+  <p class="kicker nocheck">Section 9 of 9</p>
+  <h2 id="s9t">What comes next: scorecard binning, the corruption simulator, then the modelling grid</h2>
+  <ul class="points">
+    <li>No results are claimed on this site. It covers the analysis that comes before any model.</li>
+    <li>Next come the scorecard binning, the corruption simulator, the model runs on the damaged data, an evaluation on a test split that has not been opened, and an explainability check. {{tag:doc}}</li>
+    <li>The shortlist and the corruption targets are still open decisions for the author. {{tag:doc}}</li>
+  </ul>
+  <figure class="chart" aria-labelledby="s9c">
+    <figcaption class="title" id="s9c">The data analysis is the first of nine phases</figcaption>
+    <div class="chartbody" data-chart="roadmap"></div>
+    <p class="chart-note">Text summary: nine phases from data analysis to the final write-up. The first is complete. The second is next. Nothing after it has results yet.</p>
+  </figure>
+  <aside class="sowhat"><strong>So what for this project.</strong> The analysis sets the starting point and the predictions. The experiment is what tests them.</aside>
+  <p class="source">Source: project plan in the repository. No dataset figures in this section.</p>
+</section>
+
+</div>
+</main>
+{{partial:footer}}
+<script type="module" src="{{base}}assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "site_title": "Credit Risk Under Data Quality Degradation: the data story",
+  "base_path": "/credit-model-stress-testing/",
+  "author_name": "Visco",
+  "github_url": "https://github.com/vavme",
+  "repo_url": "https://github.com/vavme/credit-model-stress-testing",
+  "kaggle_url": "https://www.kaggle.com/c/home-credit-default-risk",
+  "description_source": "kaggle",
+  "ai_draft_adopted": false,
+  "ai_draft_label": "AI-generated draft, not yet adopted by the author",
+  "ai_adopted_label": "Adopted by the author",
+  "author_label": "The author's own hypothesis"
+}
